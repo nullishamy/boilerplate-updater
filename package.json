@@ -1,6 +1,6 @@
 {
   "name": "boilerplate-updater",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A small utility to update a repository from a boilerplate",
   "main": "lib/index.js",
   "bin": "lib/index.js",
