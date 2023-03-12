@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import process from "process";
 import yargs from "yargs/yargs";
 import { gitClient } from "./git";
@@ -128,9 +130,12 @@ async function main() {
     }
   }
 
-  logger.info("Staging and committing the changes")
-  await gitClient.add(".")
-  await gitClient.commit(argv.message)
+  const isDirty = !(await gitClient.status()).isClean()
+  if (isDirty) {
+    logger.info("Staging and committing the changes")
+    await gitClient.add(".")
+    await gitClient.commit(argv.message)
+  }
 
   logger.info("Pushing to origin");
   await gitClient.push("origin", argv.branch);
