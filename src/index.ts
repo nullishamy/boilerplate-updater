@@ -113,7 +113,7 @@ async function main() {
       mergePass = true;
     } catch (err) {
       logger.warn(
-        `Merge failed, see below for logs. Press any key to continue, e to exit.\n\n${
+        `Merge failed, see below for logs. Press c when the merge is finished, e to exit.\n\n${
           (err as Error).message
         }`
       );
@@ -121,6 +121,9 @@ async function main() {
       const key = await waitForNextKey();
       if (key === 'e') {
         process.exit(0)
+      }
+      if (key === 'c') {
+        mergePass = true
       }
     }
   }
